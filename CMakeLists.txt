@@ -4,7 +4,7 @@ cmake_minimum_required(VERSION 3.14 FATAL_ERROR)
 
 # Note: update this to your new project's name and version
 project(
-  ImguiOpenglTemplate
+  Secrypt
   VERSION 1.0
   LANGUAGES CXX
 )
@@ -44,6 +44,7 @@ file(GLOB_RECURSE sources CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/source/
 
 # Note: for header-only libraries change all PUBLIC flags to INTERFACE and create an interface
 # target: add_library(${PROJECT_NAME} INTERFACE)
+
 add_library(${PROJECT_NAME} ${headers} ${sources})
 
 set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 11)
@@ -57,9 +58,8 @@ target_include_directories(
   ${PROJECT_NAME} PUBLIC $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
                          $<INSTALL_INTERFACE:include/${PROJECT_NAME}-${PROJECT_VERSION}>
 )
-
 add_subdirectory(external)
-
+target_link_libraries(${PROJECT_NAME} PUBLIC $<BUILD_INTERFACE:imgui>)
 # -----------------------------------------------------
 
 # ---- Create an installable target ----

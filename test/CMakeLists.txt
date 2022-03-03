@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.14 FATAL_ERROR)
 
-project(ImguiOpenglTemplateTests LANGUAGES CXX)
+project(SecryptTests LANGUAGES CXX)
 
 # ---- Options ----
 
@@ -19,29 +19,29 @@ CPMAddPackage("gh:onqtam/doctest#2.4.5")
 CPMAddPackage("gh:TheLartians/Format.cmake@1.7.0")
 
 if(TEST_INSTALLED_VERSION)
-  find_package(ImguiOpenglTemplate REQUIRED)
+  find_package(Secrypt REQUIRED)
 else()
-  CPMAddPackage(NAME ImguiOpenglTemplate SOURCE_DIR ${CMAKE_CURRENT_LIST_DIR}/..)
+  CPMAddPackage(NAME Secrypt SOURCE_DIR ${CMAKE_CURRENT_LIST_DIR}/..)
 endif()
 
 # ---- Create binary ----
 
 file(GLOB sources CONFIGURE_DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/source/*.cpp)
 add_executable(${PROJECT_NAME} ${sources})
-target_link_libraries(${PROJECT_NAME} doctest::doctest ImguiOpenglTemplate::ImguiOpenglTemplate)
+target_link_libraries(${PROJECT_NAME} doctest::doctest Secrypt::Secrypt)
 set_target_properties(${PROJECT_NAME} PROPERTIES CXX_STANDARD 17)
 
 # enable compiler warnings
 if(NOT TEST_INSTALLED_VERSION)
   if(CMAKE_CXX_COMPILER_ID MATCHES "Clang" OR CMAKE_CXX_COMPILER_ID MATCHES "GNU")
-    target_compile_options(ImguiOpenglTemplate PUBLIC -Wall -Wpedantic -Wextra -Werror)
+    target_compile_options(Secrypt PUBLIC -Wall -Wpedantic -Wextra -Werror)
   elseif(MSVC)
-    target_compile_options(ImguiOpenglTemplate PUBLIC /W4 /WX)
+    target_compile_options(Secrypt PUBLIC /W4 /WX)
     target_compile_definitions(${PROJECT_NAME} PUBLIC DOCTEST_CONFIG_USE_STD_HEADERS)
   endif()
 endif()
 
-# ---- Add ImguiOpenglTemplateTests ----
+# ---- Add SecryptTests ----
 
 enable_testing()
 
@@ -55,6 +55,6 @@ doctest_discover_tests(${PROJECT_NAME})
 # ---- code coverage ----
 
 if(ENABLE_TEST_COVERAGE)
-  target_compile_options(ImguiOpenglTemplate PUBLIC -O0 -g -fprofile-arcs -ftest-coverage)
-  target_link_options(ImguiOpenglTemplate PUBLIC -fprofile-arcs -ftest-coverage)
+  target_compile_options(Secrypt PUBLIC -O0 -g -fprofile-arcs -ftest-coverage)
+  target_link_options(Secrypt PUBLIC -fprofile-arcs -ftest-coverage)
 endif()

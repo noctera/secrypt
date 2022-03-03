@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.14 FATAL_ERROR)
 
-project(ImguiOpenglTemplateDocs)
+project(SecryptDocs)
 
 # This CMake file will add doc target for convenient documentation generation.
 #

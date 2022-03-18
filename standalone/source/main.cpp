@@ -30,12 +30,12 @@ void testfunc(){};
 #endif
 
 int main(int, char**) {
-  secrypt::ui::ImguiFrame imguiFrame;
+  ui::ImguiFrame imguiFrame;
 
   imguiFrame.setupWindow();
   imguiFrame.createWindow(1280, 720, "Secrypt");
 
-  imguiFrame.renderWindow([]() { return secrypt::ui::renderMainWindow(); });
+  imguiFrame.renderWindow([]() { return ui::renderMainWindow(); });
 
   return 0;
 }

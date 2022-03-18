@@ -1,32 +1,45 @@
+#include <secrypt/ui/components/nav/nav.hpp>
 #include <secrypt/ui/config.hpp>
 #include <secrypt/ui/mainWindow.hpp>
 
-namespace secrypt {
-  namespace ui {
-    void renderMainWindow() {
-      static bool use_work_area = true;
-      const ImGuiViewport* viewport = ImGui::GetMainViewport();
-      ImGui::SetNextWindowPos(use_work_area ? viewport->WorkPos : viewport->Pos);
-      ImGui::SetNextWindowSize(use_work_area ? viewport->WorkSize : viewport->Size);
-      ImGui::Begin("Secrypt", nullptr, secrypt::ui::config::getWindowFlags());
-      ImGui::Columns(2);
-      ImGui::SetColumnOffset(1, ImGui::GetWindowWidth() * 0.3);
+namespace ui {
+  void renderMainWindow() {
+    static bool use_work_area = true;
+    const ImGuiViewport* viewport = ImGui::GetMainViewport();
+    ImGui::SetNextWindowPos(use_work_area ? viewport->WorkPos : viewport->Pos);
+    ImGui::SetNextWindowSize(use_work_area ? viewport->WorkSize : viewport->Size);
 
-      {
-        if (ImGui::Button("Executor", ImVec2(230 - 15, 41))) ImGui::Spacing();
-        if (ImGui::Button("Dumper", ImVec2(230 - 15, 41))) ImGui::Spacing();
-        if (ImGui::Button("Blocker", ImVec2(230 - 15, 41))) ImGui::Spacing();
-        if (ImGui::Button("Menus", ImVec2(230 - 15, 41)))
+    ImGui::Begin("Secrypt", nullptr, ui::config::getWindowFlags());
 
-          ImGui::SetCursorPosY(ImGui::GetWindowHeight() - 30);
-      }
+    ImGui::Columns(2, nullptr, false);
 
-      ImGui::NextColumn();
-
-      // Right side
-      {}
-      ImGui::End();
+    ImGui::SetColumnOffset(1, ImGui::GetWindowWidth() * 0.2 > 300 ? ImGui::GetWindowWidth() * 0.15
+                                                                  : ImGui::GetWindowWidth() * 0.2);
+    {
+      ui::components::Nav navMenu;
+      navMenu.render();
     }
-  }  // namespace ui
 
-}  // namespace secrypt
+    // ImGui::ShowDemoWindow();
+
+    // Right side
+
+    ImGui::NextColumn();
+
+    ImGui::SetCursorPos(ImVec2(ImGui::GetCursorPosX() + ImGui::GetColumnWidth() * 0.5,
+                               ImGui::GetWindowHeight() * 0.5));
+    ImGui::Text("Hello World");
+    ImDrawList* draw_list = ImGui::GetWindowDrawList();
+    draw_list->PushClipRect(ImGui::GetItemRectSize(),
+                            ImVec2(ImGui::GetCursorPosX() - 5, ImGui::GetWindowHeight() - 15),
+                            true);
+    draw_list->AddRectFilled(
+        ImVec2(30, 30),
+        ImVec2(ImGui::GetCursorPosX() - 5, ImGui::GetCursorPosY() + ImGui::GetWindowHeight() - 15),
+        IM_COL32(90, 90, 120, 255));
+    draw_list->PopClipRect();
+
+    {}
+    ImGui::End();
+  }
+}  // namespace ui

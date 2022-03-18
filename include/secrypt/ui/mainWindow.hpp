@@ -3,10 +3,8 @@
 
 #include "imgui.h"
 
-namespace secrypt {
-  namespace ui {
-    void renderMainWindow();
-  }  // namespace ui
-}  // namespace secrypt
+namespace ui {
+  void renderMainWindow();
+}  // namespace ui
 
 #endif

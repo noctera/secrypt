@@ -3,14 +3,15 @@
 #include "imgui.h"
 
 namespace ui {
-    namespace components {
-        class Nav {
-            public:
-              void render();
-            private:
-              int page = 0;
-        };
-    }  // namespace components
-}
+  namespace components {
+    class Nav {
+    public:
+      void render();
+
+    private:
+      int page = 0;
+    };
+  }  // namespace components
+}  // namespace ui
 
 #endif

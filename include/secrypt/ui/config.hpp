@@ -6,6 +6,7 @@
 namespace ui {
   namespace config {
     ImGuiWindowFlags getWindowFlags();
+    void colors();
   }  // namespace config
 }  // namespace ui
 

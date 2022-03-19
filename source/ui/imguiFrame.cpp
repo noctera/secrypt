@@ -1,3 +1,4 @@
+#include <secrypt/ui/config.hpp>
 #include <secrypt/ui/imguiFrame.hpp>
 
 namespace ui {
@@ -55,9 +56,8 @@ namespace ui {
     // io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Enable Keyboard Controls
     // io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
 
-    // Setup Dear ImGui style
-    ImGui::StyleColorsDark();
-    // ImGui::StyleColorsClassic();
+    // Load colors
+    ui::config::colors();
 
     // Setup Platform/Renderer backends
     ImGui_ImplGlfw_InitForOpenGL(window, true);

@@ -7,9 +7,10 @@ namespace ui {
     class Nav {
     public:
       void render();
+      int getCurrentPageNum();
 
     private:
-      int page = 0;
+      inline static int page = 1;
     };
   }  // namespace components
 }  // namespace ui

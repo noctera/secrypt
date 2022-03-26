@@ -2,6 +2,8 @@
 #include <secrypt/ui/components/nav/topNav.hpp>
 #include <secrypt/ui/config.hpp>
 #include <secrypt/ui/mainWindow.hpp>
+#include <secrypt/ui/screens/decryption/decryption.hpp>
+#include <secrypt/ui/screens/encryption/encryption.hpp>
 
 namespace ui {
   void renderMainWindow() {
@@ -33,20 +35,13 @@ namespace ui {
     ImGui::PopStyleColor();
 
     // Main window
-    ImGui::SetCursorPos(ImVec2(ImGui::GetWindowWidth() * 0.2 > 300 ? ImGui::GetWindowWidth() * 0.15
-                                                                   : ImGui::GetWindowWidth() * 0.2,
-                               0));
-    ImGui::PushStyleColor(ImGuiCol_ChildBg,
-                          ImVec4(255 / 255.0, 255 / 255.0, 255 / 255.0, 255 / 255.0));
-    ImGui::BeginChild("Main",
-                      ImVec2(ImGui::GetWindowWidth() * 0.2 > 300 ? ImGui::GetWindowWidth() * 0.85
-                                                                 : ImGui::GetWindowWidth() * 0.8,
-                             ImGui::GetWindowHeight()));
-    ImGui::SetCursorPos(ImVec2(ImGui::GetCursorPosX() + ImGui::GetColumnWidth() * 0.5,
-                               (ImGui::GetWindowHeight() - 50) * 0.5));
-    ImGui::Text("Hello World");
-    ImGui::EndChild();
-    ImGui::PopStyleColor();
+    int currentPage = navMenu.getCurrentPageNum();
+    if (currentPage == 1) {
+      ui::screens::renderEncryptionScreen();
+    } else if (currentPage == 2) {
+      ui::screens::renderDecryptionScreen();
+    }
+
     ImGui::EndChild();
     ImGui::End();
     ImGui::PopStyleVar();  // padding

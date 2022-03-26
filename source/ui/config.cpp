@@ -16,5 +16,7 @@ namespace ui {
       style.Colors[ImGuiCol_FrameBg] = ImColor(100, 100, 100);
     }
 
+    std::vector<NavMenuProps> getNavMenuProps() { return {{"Encryption", 1}, {"Decryption", 2}}; }
+
   }  // namespace config
 }  // namespace ui

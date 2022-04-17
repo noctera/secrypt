@@ -1,3 +1,4 @@
+#include <secrypt/ui/colors.hpp>
 #include <secrypt/ui/components/nav/nav.hpp>
 #include <secrypt/ui/components/nav/topNav.hpp>
 #include <secrypt/ui/config.hpp>
@@ -23,16 +24,8 @@ namespace ui {
                       ImVec2(ImGui::GetWindowWidth(), ImGui::GetWindowHeight() - 50));
 
     // Nav
-    ImGui::PushStyleColor(ImGuiCol_ChildBg,
-                          ImVec4(42 / 255.0, 46 / 255.0, 54 / 255.0, 255 / 255.0));
-    ImGui::BeginChild("Nav",
-                      ImVec2(ImGui::GetWindowWidth() * 0.2 > 300 ? ImGui::GetWindowWidth() * 0.15
-                                                                 : ImGui::GetWindowWidth() * 0.2,
-                             ImGui::GetWindowHeight()));
     ui::components::Nav navMenu;
     navMenu.render();
-    ImGui::EndChild();
-    ImGui::PopStyleColor();
 
     // Main window
     int currentPage = navMenu.getCurrentPageNum();

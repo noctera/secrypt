@@ -1,4 +1,5 @@
 #include <secrypt/ui/config.hpp>
+#include <secrypt/ui/font/Roboto-Regular.embed>
 #include <secrypt/ui/imguiFrame.hpp>
 
 namespace ui {
@@ -53,6 +54,16 @@ namespace ui {
     ImGui::CreateContext();
     ImGuiIO& io = ImGui::GetIO();
     (void)io;
+
+    // ------------ load FontAwesome ------------
+    ImFontConfig fontConfig;
+    fontConfig.FontDataOwnedByAtlas = false;
+    ImFont* robotoFont = io.Fonts->AddFontFromMemoryTTF(
+        (void*)g_RobotoRegular, sizeof(g_RobotoRegular), 16.0f, &fontConfig);
+    io.FontDefault = robotoFont;
+
+    // ------------------------------------------
+
     // io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Enable Keyboard Controls
     // io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
 
